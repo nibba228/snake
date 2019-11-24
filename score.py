@@ -15,4 +15,4 @@ class Score:
     def update_max_score(self):
         if self.score > self.max_score:
             with open('max_score.txt', 'w') as f:
-                f.write(str(self.max_score))
+                f.write(str(self.score))
