@@ -79,5 +79,5 @@ def _draw_vertical_lines(screen, settings):
 
 def _draw_horizontal_lines(screen, settings):
     x0, x1 = 0, settings.screen_size[0]
-    for y in range(0, settings. screen_size[1] + 1, settings.width):
+    for y in range(0, settings.screen_size[1] + 1, settings.width):
         pg.draw.line(screen, settings.line_colour, (x0, y), (x1, y))
