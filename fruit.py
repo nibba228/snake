@@ -11,7 +11,7 @@ class Fruit:
         self.color = settings.fruit_colour
         self.settings = settings
 
-        self.x, self.y = (randrange(0, settings.screen_size[i] + 1,
+        self.x, self.y = (randrange(0, settings.screen_size[i],
                                     self.width) for i in range(2))
         self.rect = pg.Rect(self.x, self.y, self.width, self.width)
 
