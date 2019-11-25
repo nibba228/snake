@@ -4,17 +4,17 @@ import game_functions as gf
 from settings import Settings
 from fruit import Fruit
 from snake import Snake
-from score import Score
+from game_stats import GameStats
 
 
 def main():
     pg.init()
     settings = Settings()
-    score = Score()
+    game_stats = GameStats()
 
     screen = pg.display.set_mode(settings.screen_size)
-    title = 'Snake | Max score: ' + str(score.max_score) + ' | Score: ' +\
-            str(score.score)
+    title = 'Snake | Max score: ' + str(game_stats.max_score) + ' | Score: ' +\
+            str(game_stats.score)
     pg.display.set_caption(title)
 
     fruit = Fruit(settings, screen)
@@ -24,10 +24,12 @@ def main():
 
     while 1:
         gf.check_events(snake)
-        gf.update(fruit, snake, score, fps_controller, screen, settings)
+        gf.update(fruit, snake, game_stats, fps_controller, screen, settings)
+        if not fruit.on_screen:
+            gf.update_caption(game_stats)
 
         if gf.game_over(snake):
-            score.update_max_score()
+            game_stats.update_max_score()
             print('GAME OVER')
             break
 

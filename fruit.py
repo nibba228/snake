@@ -3,6 +3,7 @@ from random import randrange
 
 
 class Fruit:
+    """Класс, представляющий фрукт"""
 
     def __init__(self, settings, screen):
         self.width = settings.width

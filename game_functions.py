@@ -1,6 +1,5 @@
 import pygame as pg
 from link import Link
-from score import Score
 
 
 def check_events(snake):
@@ -25,23 +24,18 @@ def check_keydown_events(event, snake):
 
 
 def update(fruit, snake, score, fps_controller, screen, settings):
+    """Обновление экрана"""
     snake.update()
+    screen.fill(settings.screen_colour)
 
-    screen.fill((255, 255, 255))
-    fruit.on_screen = False
-
-    if not fruit.on_screen:
-        fruit.draw()
+    fruit.draw()
     snake.draw()
 
     check_fruit_collisions(snake, fruit, settings, screen, score)
-
     line_up_screen(screen, settings)
+
     pg.display.flip()
     fps_controller.tick(17)
-
-    if not fruit.on_screen:
-        update_caption(score)
 
 
 def check_fruit_collisions(snake, fruit, settings, screen, score):
@@ -61,9 +55,9 @@ def game_over(snake):
     return False
 
 
-def update_caption(score):
-    pg.display.set_caption('Snake | Max score: ' + str(score.max_score) +
-                           ' | Score: ' + str(score.score))
+def update_caption(game_stats):
+    pg.display.set_caption('Snake | Max score: ' + str(game_stats.max_score) +
+                           ' | Score: ' + str(game_stats.score))
 
 
 def line_up_screen(screen, settings):

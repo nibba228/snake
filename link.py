@@ -2,6 +2,7 @@ import pygame as pg
 
 
 class Link:
+    """Звено змейки"""
 
     def __init__(self, settings, screen, x, y):
         super().__init__()
