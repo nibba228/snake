@@ -6,8 +6,6 @@ from link import Link
 class Snake:
 
     def __init__(self, settings, screen):
-        super().__init__()
-
         self.screen = screen
         self.screen_rect = screen.get_rect()
         self.settings = settings
