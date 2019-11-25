@@ -5,8 +5,6 @@ from random import randrange
 class Fruit:
 
     def __init__(self, settings, screen):
-        super().__init__()
-
         self.width = settings.width
         self.color = settings.fruit_colour
         self.settings = settings
