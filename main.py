@@ -5,6 +5,7 @@ from settings import Settings
 from fruit import Fruit
 from snake import Snake
 from game_stats import GameStats
+from button import Button
 
 
 def main():
@@ -19,6 +20,7 @@ def main():
 
     fruit = Fruit(settings, screen)
     snake = Snake(settings, screen)
+    button = Button(screen, settings, 'GAME OVER')
 
     fps_controller = pg.time.Clock()
 
@@ -30,7 +32,8 @@ def main():
 
         if gf.game_over(snake):
             game_stats.update_max_score()
-            print('GAME OVER')
+            button.draw()
+            input()
             break
 
 

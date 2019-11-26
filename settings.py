@@ -12,3 +12,8 @@ class Settings:
         self.snake_colour = 0, 255, 0
 
         self.line_colour = 0, 156, 235
+
+        self.text_colour = 0, 0, 0
+        self.button_colour = 255, 255, 255
+        self.button_width = self.screen_size[0] // 3
+        self.button_height = self.screen_size[1] // 5
