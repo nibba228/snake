@@ -35,7 +35,7 @@ def update(fruit, snake, score, fps_controller, screen, settings):
     line_up_screen(screen, settings)
 
     pg.display.flip()
-    fps_controller.tick(17)
+    fps_controller.tick(10)
 
 
 def check_fruit_collisions(snake, fruit, settings, screen, score):
@@ -45,14 +45,13 @@ def check_fruit_collisions(snake, fruit, settings, screen, score):
                            last_element.y - settings.speed))
         fruit.update_coordinates()
         score.add_score()
-        fruit.on_screen = False
+        settings.fruit_on_screen = False
 
 
-def game_over(snake):
+def check_game_over(snake, settings):
     for link in snake.links[1:]:
         if snake.head.rect.top == link.rect.top and snake.head.x == link.x:
-            return True
-    return False
+            settings.game_over = True
 
 
 def update_caption(game_stats):

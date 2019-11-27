@@ -1,7 +1,7 @@
 import pygame as pg
 
 
-class Button():
+class Text():
     """Класс для представления кнопки"""
 
     def __init__(self, screen, settings, msg):
@@ -9,13 +9,12 @@ class Button():
         self.settings = settings
         self.screen_rect = screen.get_rect()
 
-        self.font = pg.font.SysFont(None, 16)
+        self.font = pg.font.SysFont('arial', 32, True)
         self.font_surf = self.font.render(msg, True, settings.text_colour,
-         settings.button_colour)
+         settings.surface_colour)
 
         self.rect = self.font_surf.get_rect()
-        self.rect.x = self.screen_rect.centerx
-        self.rect.y = self.screen_rect.centery
+        self.rect.center = self.screen_rect.centerx, self.screen_rect.centery
 
     def draw(self):
-        pg.draw.rect(self.screen, self.settings.button_colour, self.rect)
+        self.screen.blit(self.font_surf, self.rect)
