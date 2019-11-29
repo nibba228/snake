@@ -15,12 +15,12 @@ class Fruit:
         self.rect = pg.Rect(self.x, self.y, self.width, self.width)
 
         self.screen = screen
-        self.on_screen = False
+        settings.fruit_on_screen = False
 
     def draw(self):
         self.rect = pg.Rect(self.x, self.y, self.width, self.width)
         pg.draw.rect(self.screen, self.color, self.rect)
-        self.on_screen = True
+        self.settings.fruit_on_screen = True
 
     def update_coordinates(self):
         self.x, self.y = (randrange(0, self.settings.screen_size[i],
