@@ -12,7 +12,9 @@ class RestartButton:
         self.image = pg.image.load('imgs\\restart_button.png.jpg')
         self.rect = self.image.get_rect()
         self.rect.center = self.screen_rect.centerx, self.screen_rect.centery + 60
-        self.rect.width = settings.button_width
+
+        self.x = self.rect.x
+        self.y = self.rect.y
 
     def blit(self):
         self.screen.blit(self.image, self.rect)

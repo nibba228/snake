@@ -1,5 +1,8 @@
 import pygame as pg
+
 from link import Link
+from snake import Snake
+from fruit import Fruit
 
 
 def check_events(snake):
@@ -48,10 +51,26 @@ def check_fruit_collisions(snake, fruit, settings, screen, score):
         settings.fruit_on_screen = False
 
 
+def restart_game(game_stats, snake, fruit, settings, screen):
+    game_stats.update_max_score()
+    game_stats.score = 0
+
+    update_caption(game_stats)
+
+
 def check_game_over(snake, settings):
     for link in snake.links[1:]:
         if snake.head.rect.top == link.rect.top and snake.head.x == link.x:
             settings.game_over = True
+
+
+def is_button_pressed(button, settings):
+    mouse_position = pg.mouse.get_pos()
+    for event in pg.event.get():
+        if event.type == pg.MOUSEBUTTONDOWN and\
+        button.rect.collidepoint(event.pos[0], event.pos[1]):
+                settings.game_over = False
+                return True
 
 
 def update_caption(game_stats):

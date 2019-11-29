@@ -28,21 +28,24 @@ def main():
     fps_controller = pg.time.Clock()
 
     while 1:
-        gf.check_events(snake)
-        gf.update(fruit, snake, game_stats, fps_controller, screen, settings)
-        if not settings.fruit_on_screen:
-            gf.update_caption(game_stats)
+        if not settings.game_over:
+            gf.check_events(snake)
+            gf.update(fruit, snake, game_stats, fps_controller, screen, settings)
 
-        gf.check_game_over(snake, settings)
+            if not settings.fruit_on_screen:
+                gf.update_caption(game_stats)
 
-        if settings.game_over:
+            gf.check_game_over(snake, settings)
+        else:
             game_stats.update_max_score()
             text.draw()
             button.blit()
-
             pg.display.flip()
-            sleep(3)
-            break
+
+            if gf.is_button_pressed(button, settings):
+                gf.restart_game(game_stats, snake, fruit, settings, screen)
+                snake = Snake(settings, screen)
+                fruit = Fruit(settings, screen)
 
 
 main()
