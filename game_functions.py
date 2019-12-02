@@ -58,6 +58,7 @@ def restart_game(game_stats, snake, fruit, settings, screen):
     game_stats.load_max_score()
 
     update_caption(game_stats)
+    settings.menu_passed = False
 
 
 def check_game_over(snake, settings):
@@ -94,3 +95,16 @@ def _draw_horizontal_lines(screen, settings):
     x0, x1 = 0, settings.screen_size[0]
     for y in range(0, settings.screen_size[1] + 1, settings.width):
         pg.draw.line(screen, settings.line_colour, (x0, y), (x1, y))
+
+
+def start_game(screen, menu):
+    screen.fill((255, 255, 255))
+    menu.blit()
+    pg.display.flip()
+
+
+def is_menu_passed(settings, menu):
+    for event in pg.event.get():
+        if event.type == pg.MOUSEBUTTONDOWN\
+        and menu.rect.collidepoint(event.pos[0], event.pos[1]):
+            settings.menu_passed = True

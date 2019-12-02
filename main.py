@@ -8,6 +8,7 @@ from snake import Snake
 from game_stats import GameStats
 from text import Text
 from restart_button import RestartButton
+from menu import Menu
 
 
 def main():
@@ -24,28 +25,33 @@ def main():
     snake = Snake(settings, screen)
     text = Text(screen, settings, 'GAME OVER')
     button = RestartButton(screen, settings)
+    menu = Menu(screen, settings)
 
     fps_controller = pg.time.Clock()
 
     while 1:
-        if not settings.game_over:
-            gf.check_events(snake)
-            gf.update(fruit, snake, game_stats, fps_controller, screen, settings)
-
-            if not settings.fruit_on_screen:
-                gf.update_caption(game_stats)
-
-            gf.check_game_over(snake, settings)
+        if not settings.menu_passed:
+            gf.start_game(screen, menu)
+            gf.is_menu_passed(settings, menu)
         else:
-            game_stats.update_max_score()
-            text.draw()
-            button.blit()
-            pg.display.flip()
+            if not settings.game_over:
+                gf.check_events(snake)
+                gf.update(fruit, snake, game_stats, fps_controller, screen, settings)
 
-            if gf.is_button_pressed(button, settings):
-                gf.restart_game(game_stats, snake, fruit, settings, screen)
-                snake = Snake(settings, screen)
-                fruit = Fruit(settings, screen)
+                if not settings.fruit_on_screen:
+                    gf.update_caption(game_stats)
+
+                gf.check_game_over(snake, settings)
+            else:
+                game_stats.update_max_score()
+                text.draw()
+                button.blit()
+                pg.display.flip()
+
+                if gf.is_button_pressed(button, settings):
+                    gf.restart_game(game_stats, snake, fruit, settings, screen)
+                    snake = Snake(settings, screen)
+                    fruit = Fruit(settings, screen)
 
 
 main()

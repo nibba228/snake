@@ -21,3 +21,5 @@ class Settings:
 
         self.button_colour = 0, 255, 0
         self.button_width = 20
+
+        self.menu_passed = False
