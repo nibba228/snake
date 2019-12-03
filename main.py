@@ -25,7 +25,7 @@ def main():
     snake = Snake(settings, screen)
     text = Text(screen, settings, 'GAME OVER')
     button = RestartButton(screen, settings)
-    menu = Menu(screen, settings)
+    menu = Menu(screen)
 
     fps_controller = pg.time.Clock()
 
